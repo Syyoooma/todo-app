@@ -1,0 +1,80 @@
+body{
+    background-color: rgb(61, 68, 68);
+}
+
+.taskText {
+    text-decoration: underline;
+    font-size: 30px;
+    color: rgb(104, 151, 253);
+}
+.done {
+    
+    color: rgb(4, 247, 20);
+
+}
+#task {
+    width: 50%;
+    height: 30px;
+    border-color:rgb(77, 77, 149);
+    
+}
+#AddText {
+    width: 70px;
+    height: 36px;
+    background-color: goldenrod;
+    color:rgb(7, 0, 0);
+    
+}
+#titleMain{
+    text-align: center;
+    color: rgb(239, 235, 136);
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+ol {
+    font-size: 28px;
+    color: rgb(104, 151, 253);
+
+}
+
+li {
+    margin-bottom: 12px;
+    
+}
+
+button {
+    font-size: 18px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    min-width: 300px;
+}
