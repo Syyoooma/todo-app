@@ -5,7 +5,12 @@
     const modalText = document.querySelector("#modalText")
     const confirmYes = document.querySelector("#confirmYes")
     const confirmNo = document.querySelector("#confirmNo")
-    
+    const editModal = document.querySelector("#editModal")
+    const editModalText = document.querySelector("#editModalText")
+    const editInput = document.querySelector("#editInput")
+    const editButton = document.querySelector("#editButton")
+    const leaveButton = document.querySelector("#leaveButton")
+
 
     let pendingAction;
     let tasks = []
@@ -36,21 +41,10 @@
         li.append(buttonChange)
 
         buttonChange.addEventListener("click", () => {
-            const newText = prompt("Enter new text:")
-        
-            if(!newText)    
-            return
-            const text = newText.trim()
-            if(!text){
-                return
-            }   
-
-            if (hasDuplicate(text, task))
-                return      
-                
-            spanText.textContent = text
-            task.text = text
-            saveTask()
+            const action = () => editTask(task, editInput, spanText)
+            const text1 = "Введіть новий текст:"
+            showEdit(text1, action)        
+            
 
         })
         
@@ -75,21 +69,12 @@
         deleteButton.addEventListener("click", () => {
             
             const action = () => deleteTask(task, li)
-            const text = "Вы уверены?"
+            const text = "Видалити задачу?"
             showConfirm(text, action)
-            
-
 
         
         })
 
-            
-           
-
-            
-            
-        
-        
         taskList.append(li)
         
     }
@@ -140,6 +125,23 @@
         pendingAction = null;
     })
 
+    editButton.addEventListener("click", () => {
+        if(pendingAction){
+            pendingAction()
+            saveTask()
+            editModal.classList.toggle("hidden")
+            pendingAction = null
+        }
+    })
+
+    leaveButton.addEventListener("click", () => {
+        if(pendingAction){
+            saveTask()
+            editModal.classList.toggle("hidden")
+            pendingAction = null
+        }
+    })
+
     function hasDuplicate(text, task){
 
         
@@ -174,5 +176,25 @@
     function deleteTask(task, li){
         tasks = tasks.filter(element => element !== task)
         li.remove()
+        
+    }
+    function showEdit(text, action){
+        editModalText.textContent = text
+        editModal.classList.remove("hidden")
+        pendingAction = action
+    }
+    function editTask(task, editInput, spanText){
+        const NewTask = editInput.value
+        if(!NewTask)    
+        return
+        const text = NewTask.trim()
+        if(!text){
+            return
+        }
+
+        if (hasDuplicate(text, task))
+            return
+        spanText.textContent = text
+        task.text = text
         
     }

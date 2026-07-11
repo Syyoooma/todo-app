@@ -78,3 +78,31 @@ button {
 
     min-width: 300px;
 }
+#editInput {
+    width: 300px;
+    height: 30px;
+}
+.edit-input {
+    display: flex;
+    justify-content: center;
+}
+#confirmYes {
+    color: green;
+}
+#confirmNo {
+    color: red;
+}
+#modalText{
+    font-size: 30px;
+    
+}
+#editButton {
+    color: green;
+}
+#leaveButton {
+    color: red;
+}
+#editModalText{
+    font-size: 30px;
+
+}
