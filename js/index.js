@@ -17,24 +17,18 @@
     const modalTextComplete = document.querySelector("#modalTextComplete")
     const completeYes = document.querySelector("#completeYes")
     const completeNo = document.querySelector("#completeNo")
-
-
-
-
     lucide.createIcons();
-
 
     let pendingAction;
     let tasks = []
     const data = localStorage.getItem("tasks")
 
-    tasks = JSON.parse(data) || []
+    tasks = JSON.parse(data) || [] 
 
     for(task of tasks){
     createTask(task)
     }
     
-
     function createTask (task){
         const li = document.createElement("li")
         const DivInLi = document.createElement("div")
@@ -102,6 +96,7 @@
             const action = () => deleteTask(task, li)
             const text = "Видалити задачу?"
             showConfirm(text, action)
+            updateNumbers()
 
         
         })
@@ -143,11 +138,13 @@
     confirmYes.addEventListener("click", () => {
         if(pendingAction){
             pendingAction()
+            updateNumbers()
             saveTask()
             confirmModal.classList.toggle("hidden")
             pendingAction = null;
         }
     })
+    
     confirmNo.addEventListener("click", () =>{
         saveTask()
         confirmModal.classList.toggle("hidden")
@@ -223,6 +220,7 @@
     function deleteTask(task, li){
         tasks = tasks.filter(element => element !== task)
         li.remove()
+        updateNumbers()
         
     }
     function showEdit(text, action){
