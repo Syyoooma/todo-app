@@ -10,6 +10,17 @@
     const editInput = document.querySelector("#editInput")
     const editButton = document.querySelector("#editButton")
     const leaveButton = document.querySelector("#leaveButton")
+    const modalDuplicate = document.querySelector("#modalDuplicate")
+    const duplicateConfirmText = document.querySelector("#duplicateConfirmText")
+    const OKButton = document.querySelector("#OKButton")
+    const ModalComplete = document.querySelector("#ModalComplete")
+    const modalTextComplete = document.querySelector("#modalTextComplete")
+    const completeYes = document.querySelector("#completeYes")
+    const completeNo = document.querySelector("#completeNo")
+
+
+
+
     lucide.createIcons();
 
 
@@ -66,14 +77,20 @@
         DivInLi.append(buttonDone)
         buttonDone.addEventListener("click", () => {
 
-            const done = confirm("Хотите отметить задачу как выполненую?")
+            let action;
+            let text;
 
-            if(done){
-            spanText.classList.toggle("done")
-            task.done = !task.done
-            saveTask()
-            }
-        })
+            if (task.done) {
+                action = () => unComplete(task, spanText);
+                text = "Відмітити задачу як невиконану?";
+            } else {
+                action = () => doComplete(task, spanText);
+                text = "Виконати задачу?";
+        }
+            showComplete(text, action);
+        });
+
+        
 
         const deleteButton = document.createElement("button")
         const iconForButtonDel = document.createElement("i")
@@ -127,7 +144,6 @@
         if(pendingAction){
             pendingAction()
             saveTask()
-            updateNumbers()
             confirmModal.classList.toggle("hidden")
             pendingAction = null;
         }
@@ -154,6 +170,24 @@
             pendingAction = null
         }
     })
+    OKButton.addEventListener("click", () => {
+        modalDuplicate.classList.add("hidden")
+    })
+
+    completeYes.addEventListener("click", () => {
+        if(pendingAction){
+            pendingAction()
+            saveTask()
+            ModalComplete.classList.toggle("hidden")
+            pendingAction = null;
+            
+        }
+    })
+    completeNo.addEventListener("click", () =>{
+        saveTask()
+        ModalComplete.classList.toggle("hidden")
+        pendingAction = null;
+    })
 
     function hasDuplicate(text, task){
 
@@ -168,7 +202,7 @@
             const taskText = tasks[i].text.toLowerCase()
             
             if(taskText === enterText){
-                alert("Такая задача уже сучествует")
+                showDuplicateModal("Така задача вже існує!")
                 inputText.value = ""
                 return true
             }
@@ -216,4 +250,21 @@
     document.querySelectorAll(".task-number").forEach((el, index) => {
         el.textContent = `${index + 1}.`;
     });
-}
+    }
+    function showDuplicateModal(text){
+        duplicateConfirmText.textContent = text
+        modalDuplicate.classList.remove("hidden")
+    }
+    function showComplete (text, action){
+        modalTextComplete.textContent = text
+        ModalComplete.classList.remove("hidden")
+        pendingAction = action
+    }
+    function doComplete (task, spanText){
+        spanText.classList.add("done")
+        task.done = true
+    }
+    function unComplete (task, spanText) {
+        spanText.classList.remove("done")
+        task.done = false
+    }
