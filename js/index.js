@@ -10,6 +10,7 @@
     const editInput = document.querySelector("#editInput")
     const editButton = document.querySelector("#editButton")
     const leaveButton = document.querySelector("#leaveButton")
+    lucide.createIcons();
 
 
     let pendingAction;
@@ -24,21 +25,30 @@
     
 
     function createTask (task){
-
         const li = document.createElement("li")
-        
+        const DivInLi = document.createElement("div")
+        DivInLi.className = "DivLi"
+        const number = document.createElement("span");
+        number.className = "task-number";
+        number.textContent = `${tasks.indexOf(task) + 1}. `;
+        DivInLi.prepend(number);
         const spanText = document.createElement("span")
         spanText.className = "taskText"
         if(task.done === true){
             spanText.classList.add("done")
         }
         spanText.textContent = task.text
-        
-        li.append(spanText)
+        li.append(DivInLi)
+        DivInLi.append(spanText)
         
         const buttonChange = document.createElement("button")
-        buttonChange.textContent = "✏️"
-        li.append(buttonChange)
+        const iconForButtonChange = document.createElement("i")
+        iconForButtonChange.setAttribute("data-lucide","pencil")
+        
+        buttonChange.append(iconForButtonChange)
+        DivInLi.append(buttonChange)
+        
+
 
         buttonChange.addEventListener("click", () => {
             const action = () => editTask(task, editInput, spanText)
@@ -49,9 +59,11 @@
         })
         
         const buttonDone = document.createElement("button")
-        buttonDone.textContent = "✅"
+        const iconForButtonDone = document.createElement("i")
+        iconForButtonDone.setAttribute("data-lucide", "Check")
+        buttonDone.append(iconForButtonDone)
 
-        li.append(buttonDone)
+        DivInLi.append(buttonDone)
         buttonDone.addEventListener("click", () => {
 
             const done = confirm("Хотите отметить задачу как выполненую?")
@@ -64,8 +76,10 @@
         })
 
         const deleteButton = document.createElement("button")
-        deleteButton.textContent = "❌"
-        li.append(deleteButton)
+        const iconForButtonDel = document.createElement("i")
+        iconForButtonDel.setAttribute("data-lucide", "Trash 2")
+        deleteButton.append(iconForButtonDel)
+        DivInLi.append(deleteButton)
         deleteButton.addEventListener("click", () => {
             
             const action = () => deleteTask(task, li)
@@ -74,9 +88,8 @@
 
         
         })
-
         taskList.append(li)
-        
+        lucide.createIcons();
     }
 
     function addTask(){
@@ -94,9 +107,8 @@
         if(hasDuplicate(text, task)){
             return
         }
-
-        createTask(task)
         tasks.push(task)
+        createTask(task)
         saveTask()
         inputText.value = ""
     }
@@ -115,6 +127,7 @@
         if(pendingAction){
             pendingAction()
             saveTask()
+            updateNumbers()
             confirmModal.classList.toggle("hidden")
             pendingAction = null;
         }
@@ -198,3 +211,9 @@
         task.text = text
         
     }
+
+    function updateNumbers() {
+    document.querySelectorAll(".task-number").forEach((el, index) => {
+        el.textContent = `${index + 1}.`;
+    });
+}

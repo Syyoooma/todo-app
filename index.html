@@ -13,10 +13,11 @@
     <button id="Reset">Reset</button>
 <br><br> -->
 <h1 id="titleMain">Твій план на день</h1>
-<div class="controls"><input type="text" id="task">
+<div class="controls"><input type="text" id="task" placeholder="Введіть задачу:">
 
 <button id="AddText">
-    Додати
+    <i data-lucide="Plus"></i>
+
 </button></div>
 
 
@@ -30,9 +31,11 @@
 <div id="confirmModal" class="modal hidden">
     <div class="modal-content">
         <p id="modalText">Вы уверены?</p>
-
-        <button id="confirmYes">Так</button>
-        <button id="confirmNo">Ні</button>
+        <div class="modal-buttonConfirm">
+            <button id="confirmYes">Так</button>
+            <button id="confirmNo">Ні</button>
+        </div>
+        
     </div>
 </div>
 
@@ -40,12 +43,15 @@
     <div class="modal-content">
         <p id="editModalText">Введіть новий текст:</p>
         <div class="edit-input"><input type="text" id="editInput"></div>
-
-        <button id="editButton">Змінити</button>
-        <button id="leaveButton">Вийти</button>
+        <div class="modal-buttonEdit">
+            <button id="editButton">Змінити</button>
+            <button id="leaveButton">Вийти</button>
+        </div>
+        
     </div>
 </div>
     <!-- <script src="js/main.js"></script> -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="js/index.js"></script>
     <!-- <script src="js/vars.js"></script> -->
     <!-- <script src="js/tasks.js"></script> -->
