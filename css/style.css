@@ -5,13 +5,16 @@ body{
 .taskText {
     flex: 1;
     font-size: 30px;
-    color:rgb(225, 224, 224);
+    color:white;
 }
 .done {
     opacity:.6;
     color: rgb(4, 247, 20);
 
 }
+
+
+
 #task {
     width: 50%;
     height: 48px;
@@ -95,6 +98,7 @@ button {
     border-radius: 10px;
 
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 15px;
 
@@ -122,7 +126,7 @@ button {
     height: 30px;
 }
 #modalText{
-    font-size: 30px;
+    font-size: 22px;
     
 }
 #editButton {
@@ -136,9 +140,14 @@ button {
     height: 30px;   
 }
 #editModalText{
-    font-size: 30px;
-
+    font-size: 22px;
 }
+
+#modalTextComplete{
+    font-size: 22px;
+    
+}
+
 .DivLi {
     display: flex;
     align-items: center;
@@ -167,6 +176,7 @@ svg.lucide.lucide-pencil {
 }
 .task-number{
     margin-right: 12px;
+    color: white;
 }
 
 .modal-buttonConfirm{

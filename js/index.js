@@ -1,3 +1,4 @@
+    // DOM elements
     const buttonAdd = document.querySelector("#AddText")
     const taskList = document.querySelector("ol")
     const inputText = document.querySelector("#task")
@@ -18,9 +19,10 @@
     const completeYes = document.querySelector("#completeYes")
     const completeNo = document.querySelector("#completeNo")
     lucide.createIcons();
-
+    //STATE
     let pendingAction;
     let tasks = []
+    //INITIALIZATION
     const data = localStorage.getItem("tasks")
 
     tasks = JSON.parse(data) || [] 
@@ -30,28 +32,28 @@
     }
     
     function createTask (task){
-        const li = document.createElement("li")
-        const DivInLi = document.createElement("div")
-        DivInLi.className = "DivLi"
+        const listCard = document.createElement("li")
+        const taskItem = document.createElement("div")
+        taskItem.className = "DivLi"
         const number = document.createElement("span");
         number.className = "task-number";
         number.textContent = `${tasks.indexOf(task) + 1}. `;
-        DivInLi.prepend(number);
+        taskItem.prepend(number);
         const spanText = document.createElement("span")
         spanText.className = "taskText"
         if(task.done === true){
             spanText.classList.add("done")
         }
         spanText.textContent = task.text
-        li.append(DivInLi)
-        DivInLi.append(spanText)
+        listCard.append(taskItem)
+        taskItem.append(spanText)
         
         const buttonChange = document.createElement("button")
         const iconForButtonChange = document.createElement("i")
         iconForButtonChange.setAttribute("data-lucide","pencil")
         
         buttonChange.append(iconForButtonChange)
-        DivInLi.append(buttonChange)
+        taskItem.append(buttonChange)
         
 
 
@@ -68,17 +70,17 @@
         iconForButtonDone.setAttribute("data-lucide", "Check")
         buttonDone.append(iconForButtonDone)
 
-        DivInLi.append(buttonDone)
+        taskItem.append(buttonDone)
         buttonDone.addEventListener("click", () => {
 
             let action;
             let text;
 
             if (task.done) {
-                action = () => unComplete(task, spanText);
+                action = () => unComplete(task, spanText, buttonDone);
                 text = "Відмітити задачу як невиконану?";
             } else {
-                action = () => doComplete(task, spanText);
+                action = () => doComplete(task, spanText, buttonDone);
                 text = "Виконати задачу?";
         }
             showComplete(text, action);
@@ -90,7 +92,7 @@
         const iconForButtonDel = document.createElement("i")
         iconForButtonDel.setAttribute("data-lucide", "Trash 2")
         deleteButton.append(iconForButtonDel)
-        DivInLi.append(deleteButton)
+        taskItem.append(deleteButton)
         deleteButton.addEventListener("click", () => {
             
             const action = () => deleteTask(task, li)
@@ -100,7 +102,7 @@
 
         
         })
-        taskList.append(li)
+        taskList.append(listCard)
         lucide.createIcons();
     }
 
@@ -217,9 +219,9 @@
         pendingAction = action
         
     }
-    function deleteTask(task, li){
+    function deleteTask(task, listCard){
         tasks = tasks.filter(element => element !== task)
-        li.remove()
+        listCard.remove()
         updateNumbers()
         
     }
@@ -258,11 +260,15 @@
         ModalComplete.classList.remove("hidden")
         pendingAction = action
     }
-    function doComplete (task, spanText){
+    function doComplete (task, spanText, buttonDone){
         spanText.classList.add("done")
+        buttonDone.classList.add("done")
         task.done = true
     }
-    function unComplete (task, spanText) {
+    function unComplete (task, spanText, buttonDone) {
         spanText.classList.remove("done")
+        buttonDone.classList.remove("done")
         task.done = false
     }
+
+    
