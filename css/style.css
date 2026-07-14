@@ -57,6 +57,7 @@ ol {
 }
 
 li {
+    
     display: flex;
     align-items: center;
     margin-bottom: 5px;
@@ -175,6 +176,7 @@ svg.lucide.lucide-pencil {
     align-items: center;
 }
 .task-number{
+    margin-left: 5px;
     margin-right: 12px;
     color: white;
 }

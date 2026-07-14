@@ -19,6 +19,6 @@ node_modules/
 # Build folders
 dist/
 build/
-main.js
-tasks.js
+
+
 vars.js
