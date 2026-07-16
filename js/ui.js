@@ -32,7 +32,7 @@ export function createTask (task){
         buttonChange.addEventListener("click", () => {
             const action = () => editTask(task, editInput, spanText)
             const text1 = "Введіть новий текст:"
-            showEdit(text1, action)        
+            showEdit(text1, action, task)        
             
 
         })

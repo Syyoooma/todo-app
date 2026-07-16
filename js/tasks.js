@@ -29,8 +29,7 @@ export function addTask(){
 
 export function hasDuplicate(text, task){
 
-        
-    
+
         const enterText = text.toLowerCase()
 
         for(let i = 0; i < tasks.length; i++){
@@ -57,6 +56,7 @@ export function deleteTask(task, listCard){
     }
 
 export function editTask(task, editInput, spanText){
+        editInput.value = task.text
         const NewTask = editInput.value
         if(!NewTask)    
         return
@@ -64,10 +64,13 @@ export function editTask(task, editInput, spanText){
         if(!text){
             return
         }
-
+        if(text === task.text){
+            showDuplicateModal("Ви не змінили задачу")
+            return
+        }
         if (hasDuplicate(text, task))
             return
-        spanText.textContent = text
+        editInput.value = text
         task.text = text
         
     }

@@ -1,4 +1,6 @@
+import { editInput } from "./dom.js"
 import { setPendingAction } from "./states.js"
+
 
 export function showConfirm(text, action){
         modalText.textContent = text
@@ -6,8 +8,9 @@ export function showConfirm(text, action){
         setPendingAction(action)
         
     }
-export function showEdit(text, action){
+export function showEdit(text, action, task){
         editModalText.textContent = text
+        editInput.value = task.text
         editModal.classList.remove("hidden")
         setPendingAction(action)
     }

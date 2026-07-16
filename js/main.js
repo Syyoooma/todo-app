@@ -4,8 +4,7 @@ import{
     leaveButton, modalDuplicate, duplicateConfirmText, OKButton,
     ModalComplete, modalTextComplete, completeYes, completeNo
     } from "./dom.js"
-
-    
+ 
 import{
     pendingAction, tasks, setTasks, setPendingAction,
 }   from "./states.js"
@@ -17,7 +16,6 @@ import{
 import{
     createTask, updateNumbers
 }   from "./ui.js"
-
 
 import{
     addTask, hasDuplicate, deleteTask, editTask,
