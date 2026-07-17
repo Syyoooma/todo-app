@@ -27,6 +27,8 @@ import{
     showConfirm, showEdit, showDuplicateModal, showComplete
 }   from "./modals.js"
 
+import { showToast } from "./toast.js"
+
 lucide.createIcons()
 
 setTasks(loadTasks())
@@ -36,7 +38,8 @@ for(task of tasks){
     }
 
     buttonAdd.addEventListener("click", () => {
-        addTask()
+        if(addTask())
+        showToast("Задача була додана!", "success")
     })
     inputText.addEventListener("keydown", (event) => {
 
@@ -52,6 +55,9 @@ for(task of tasks){
             saveTask(tasks)
             confirmModal.classList.toggle("hidden")
             setPendingAction(null);
+            
+            showToast("Задача була видалена!", "warning")
+            
         }
     })
     
@@ -59,16 +65,23 @@ for(task of tasks){
         saveTask()
         confirmModal.classList.toggle("hidden")
         setPendingAction(null);
+        
     })
 
     editButton.addEventListener("click", () => {
-        if(pendingAction){
-            pendingAction()
-            saveTask(tasks)
-            editModal.classList.toggle("hidden")
-            setPendingAction(null);
+    if (pendingAction) {
+
+        const result = pendingAction();
+
+        if (result) {
+            showToast("Задача була змінена!", "success");
         }
-    })
+
+        saveTask(tasks);
+        editModal.classList.toggle("hidden");
+        setPendingAction(null);
+    }
+});
 
     leaveButton.addEventListener("click", () => {
         if(pendingAction){
@@ -83,7 +96,10 @@ for(task of tasks){
 
     completeYes.addEventListener("click", () => {
         if(pendingAction){
-            pendingAction()
+            const result1 = pendingAction()
+            if(result1){
+                showToast("Ви виконали задачу!", "success")
+            }
             saveTask(tasks)
             ModalComplete.classList.toggle("hidden")
             setPendingAction(null);
@@ -124,6 +140,21 @@ for(task of tasks){
             searchNull.classList.add("hidden")
         }
     }
+   })
+    inputText.addEventListener("keydown", (event) => {
+        if(event.key === "Escape"){
+            isSearchMode = false
+            inputText.placeholder = "Додати задачу..." 
+            buttonAdd.classList.remove("hidden")
+            searchButton.innerHTML = '<i data-lucide="search"></i>';
+            lucide.createIcons();
+            inputText.value = "";
+        
+        for (const task of tasks) {
+            task.li.classList.remove("hidden");
+            searchNull.classList.add("hidden")
+        }
+            }
 
    })
 

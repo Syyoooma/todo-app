@@ -4,10 +4,11 @@ import { tasks, setTasks } from "./states.js";
 import { createTask, updateNumbers } from "./ui.js";
 import { saveTask } from "./storage.js";
 import { showDuplicateModal } from "./modals.js";
+import { showToast } from "./toast.js";
 
 
 export function addTask(){
-
+    
     const text = inputText.value.trim()
     const task = {
         text: text,
@@ -27,6 +28,7 @@ export function addTask(){
         createTask(task)
         saveTask(tasks)
         inputText.value = ""
+        return true
     }
 
 export function hasDuplicate(text, task){
@@ -41,7 +43,7 @@ export function hasDuplicate(text, task){
             const taskText = tasks[i].text.toLowerCase()
             
             if(taskText === enterText){
-                showDuplicateModal("Така задача вже існує!")
+                showToast("Така задача вже існує!", "error")
                 inputText.value = ""
                 return true
             }
@@ -55,32 +57,34 @@ export function deleteTask(task, listCard){
         listCard.remove()
         updateNumbers()
         
+        
     }
 
-export function editTask(task, editInput, spanText){
-        editInput.value = task.text
-        const NewTask = editInput.value
-        if(!NewTask)    
+export function editTask(task, spanText){
+        const newTask = editInput.value
+        if(!newTask)    
         return
-        const text = NewTask.trim()
+        const text = newTask.trim()
         if(!text){
             return
         }
         if(text === task.text){
-            showDuplicateModal("Ви не змінили задачу")
+            showToast("Ви не змінили задачу!", "error")
             return
         }
+
         if (hasDuplicate(text, task))
             return
-        editInput.value = text
-        task.text = text
-        
+        spanText.textContent = newTask;
+        task.text = newTask;
+        return true
     }
 
 export function doComplete (task, spanText, buttonDone){
         spanText.classList.add("done")
         buttonDone.classList.add("done")
         task.done = true
+        return true
     }
 export function unComplete (task, spanText, buttonDone) {
         spanText.classList.remove("done")

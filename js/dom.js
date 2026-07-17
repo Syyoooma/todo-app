@@ -20,3 +20,5 @@ export const completeNo = document.querySelector("#completeNo")
 export const searchInput = document.querySelector("#search-input")
 export const searchButton = document.querySelector("#searchButton")
 export const searchNull = document.querySelector("#searchNull")
+export const toastContainer = document.querySelector("#toastContainer")
+

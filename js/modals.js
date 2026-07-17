@@ -1,4 +1,6 @@
-import { editInput } from "./dom.js"
+import { editInput, editModalText, editModal, modalText, confirmModal,
+    duplicateConfirmText, modalDuplicate, modalTextComplete, ModalComplete
+ } from "./dom.js"
 import { setPendingAction } from "./states.js"
 
 
