@@ -40,21 +40,22 @@ header p{
 #task {
     font-size: 24px;
     width: 50%;
-    height: 48px;
-    background-color: gray;
+    height: 44px;
+    border:1px solid #3c4048;
+    background:#2b2d31;
     border-radius: 10px;
 }
 
 #task::placeholder {
-    font-size: 18px;
+    font-size: 24px;
+
 }
 
 #AddText {
 
-    width: 70px;
-    height: 36px;
-    background-color: white;
-    color:rgb(7, 0, 0);
+    width: 48px;
+    height: 48px;
+    color:white;
     border-radius: 12px;
     
 }
@@ -101,6 +102,7 @@ button {
     margin-right: 10px;
     margin-left: 10px;
     transition: .2s ease;
+    border-radius: 12px;
 }
 
 button:hover{
@@ -139,21 +141,24 @@ button:hover{
 
 }
 #editInput {
-    background-color: gray;
+    border:1px solid #3c4048;
+    background:#2b2d31;
     width: 300px;
     height: 30px;
+    border-radius: 12px;
+
 }
 .edit-input {
     display: flex;
     justify-content: center;
 }
 #confirmYes {
-    color: black;
+    color: #2ecc71;
     width: 60px;
     height: 30px;
 }
 #confirmNo {
-    color: black;
+    color: rgb(215, 9, 9);
     width: 60px;
     height: 30px;
 }
@@ -162,12 +167,12 @@ button:hover{
     
 }
 #editButton {
-    color: black;
+    color: #2ecc71;
     width: 80px;
     height: 30px;
 }
 #leaveButton {
-    color: black;
+    color: rgb(215, 9, 9);
     width: 80px;
     height: 30px;   
 }
@@ -179,8 +184,6 @@ button:hover{
     font-size: 22px;
     
 }
-
-
 
 .DivLi {
     display: flex;
@@ -239,12 +242,12 @@ svg.lucide.lucide-pencil {
     margin-top: 20px;
 }
 #completeYes {
-    color: black;
+    color: #2ecc71;
     width: 60px;
     height: 30px;
 }
 #completeNo {
-    color: black;
+    color: rgb(215, 9, 9);
     width: 60px;
     height: 30px;
 }
@@ -255,16 +258,15 @@ svg.lucide.lucide-pencil {
     margin-top: 20px;
 }
 #OKButton{
-    color: black;
+    color: white;
     width: 60px;
     height: 30px;
 }
 
 #searchButton{
-    width: 70px;
-    height: 36px;
-    background-color: white;
-    color:rgb(7, 0, 0);
+    width: 48px;
+    height: 48px;
+    color:white;
     border-radius: 12px;
 
 }
