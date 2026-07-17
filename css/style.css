@@ -223,3 +223,22 @@ svg.lucide.lucide-pencil {
     width: 60px;
     height: 30px;
 }
+
+
+
+.search-box i {
+
+    left: 12px;
+    width: 18px;
+    height: 18px;
+    color: #888;
+}
+
+.search-box input {
+    width: 30%;
+    padding: 12px 12px 12px 40px;
+    border-radius: 10px;
+}
+#searchNull{
+    text-align: center;
+}

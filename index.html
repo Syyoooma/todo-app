@@ -13,7 +13,9 @@
     <button id="Reset">Reset</button>
 <br><br> -->
 <div class="titleMain"><h1 id="titleMain">Твій план на день</h1></div>
-<div class="controls"><input type="text" id="task" placeholder="Введіть задачу:">
+<div class="controls">
+    <button id="searchButton"><i data-lucide="search"></i></button>
+    <input type="text" id="task" placeholder="Введіть задачу:">
 
 <button id="AddText">
     <i data-lucide="Plus"></i>
@@ -24,7 +26,7 @@
 <ol>
 
 </ol>   
-
+<h2 id="searchNull" class="hidden">Нічого не найдено</h2>
 
 
 
@@ -68,6 +70,15 @@
         </div>
         
     </div>
+</div>
+
+<div class="search-box">
+    <input
+        id="searchInput"
+        class="hidden"
+        type="text"
+        placeholder="Пошук задач..."
+    >
 </div>
     <!-- <script src="js/main.js"></script> -->
     <script src="https://unpkg.com/lucide@latest"></script>

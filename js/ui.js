@@ -5,6 +5,7 @@ import { showEdit, showComplete, showConfirm, } from "./modals.js";
 import { editTask, deleteTask, unComplete, doComplete } from "./tasks.js";
 export function createTask (task){
         const listCard = document.createElement("li")
+        task.li = listCard
         const taskItem = document.createElement("div")
         taskItem.className = "DivLi"
         const number = document.createElement("span");

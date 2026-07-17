@@ -2,7 +2,8 @@ import{
     buttonAdd, taskList, inputText, confirmModal, modalText, confirmYes,
     confirmNo, editModal, editModalText, editInput, editButton,
     leaveButton, modalDuplicate, duplicateConfirmText, OKButton,
-    ModalComplete, modalTextComplete, completeYes, completeNo
+    ModalComplete, modalTextComplete, completeYes, completeNo, searchInput, searchButton,
+    searchNull
     } from "./dom.js"
  
 import{
@@ -19,7 +20,7 @@ import{
 
 import{
     addTask, hasDuplicate, deleteTask, editTask,
-    doComplete, unComplete
+    doComplete, unComplete, searchTask
 }   from "./tasks.js"
     
 import{
@@ -94,6 +95,37 @@ for(task of tasks){
         ModalComplete.classList.toggle("hidden")
         setPendingAction(null);
     })
+    let isSearchMode = false
+    inputText.addEventListener("input", () => {
+        if(!isSearchMode){
+            return
+        }
+        searchTask()
+   });
+   
+   searchButton.addEventListener("click", () => {
+        if(!isSearchMode){
+        isSearchMode = true
+        inputText.placeholder = "Пошук задачі..."
+        buttonAdd.classList.add("hidden")
+        searchButton.innerHTML = "✖"
+        inputText.value = "";
+        inputText.focus();
+    } else{
+        isSearchMode = false
+        inputText.placeholder = "Додати задачу..." 
+        buttonAdd.classList.remove("hidden")
+        searchButton.innerHTML = '<i data-lucide="search"></i>';
+        lucide.createIcons();
+        inputText.value = "";
+        
+        for (const task of tasks) {
+            task.li.classList.remove("hidden");
+            searchNull.classList.add("hidden")
+        }
+    }
+
+   })
 
 
 

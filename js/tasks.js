@@ -1,5 +1,5 @@
 import { inputText, editInput,
-    taskList } from "./dom.js";
+    taskList, searchInput, searchNull } from "./dom.js";
 import { tasks, setTasks } from "./states.js";
 import { createTask, updateNumbers } from "./ui.js";
 import { saveTask } from "./storage.js";
@@ -11,7 +11,9 @@ export function addTask(){
     const text = inputText.value.trim()
     const task = {
         text: text,
-        done: false
+        done: false,
+        
+
     }
         if(!text){
             inputText.value = ""
@@ -85,3 +87,19 @@ export function unComplete (task, spanText, buttonDone) {
         buttonDone.classList.remove("done")
         task.done = false
     }
+
+export function searchTask (){
+    const searchText = inputText.value.trim().toLowerCase()
+            for (const task of tasks) {
+                if (task.text.toLowerCase().includes(searchText)) {
+                    task.li.classList.remove("hidden")
+                }else {
+                    task.li.classList.add("hidden");
+                    searchNull.classList.remove("hidden")
+                }
+                if(searchText === ""){
+                    searchNull.classList.add("hidden")
+                    
+                }
+            }
+}
