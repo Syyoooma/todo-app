@@ -6,15 +6,13 @@ import { saveTask } from "./storage.js";
 import { showDuplicateModal } from "./modals.js";
 import { showToast } from "./toast.js";
 
-
 export function addTask(){
     
     const text = inputText.value.trim()
     const task = {
         text: text,
         done: false,
-        
-
+    
     }
         if(!text){
             inputText.value = ""
@@ -33,7 +31,6 @@ export function addTask(){
 
 export function hasDuplicate(text, task){
 
-
         const enterText = text.toLowerCase()
 
         for(let i = 0; i < tasks.length; i++){
@@ -47,16 +44,16 @@ export function hasDuplicate(text, task){
                 inputText.value = ""
                 return true
             }
-            
         }
         return false
     }
 
 export function deleteTask(task, listCard){
         setTasks(tasks.filter(element => element !== task))
+
         listCard.remove()
+        listCard.classList.add("remove-animation");
         updateNumbers()
-        
         
     }
 

@@ -3,9 +3,12 @@ import {  editInput,
     taskList } from "./dom.js";
 import { showEdit, showComplete, showConfirm, } from "./modals.js";
 import { editTask, deleteTask, unComplete, doComplete } from "./tasks.js";
+
 export function createTask (task){
+
         const listCard = document.createElement("li")
         task.li = listCard
+        listCard.classList.add("task-animation");
         const taskItem = document.createElement("div")
         taskItem.className = "DivLi"
         const number = document.createElement("span");
@@ -14,9 +17,11 @@ export function createTask (task){
         taskItem.prepend(number);
         const spanText = document.createElement("span")
         spanText.className = "taskText"
+        
         if(task.done === true){
             spanText.classList.add("done")
         }
+
         spanText.textContent = task.text
         listCard.append(taskItem)
         taskItem.append(spanText)
@@ -28,14 +33,11 @@ export function createTask (task){
         buttonChange.append(iconForButtonChange)
         taskItem.append(buttonChange)
         
-
-
         buttonChange.addEventListener("click", () => {
             const action = () => editTask(task, spanText)
             const text1 = "Введіть новий текст:"
             showEdit(text1, action, task)        
             
-
         })
         
         const buttonDone = document.createElement("button")
@@ -59,8 +61,6 @@ export function createTask (task){
             showComplete(text, action);
         });
 
-        
-
         const deleteButton = document.createElement("button")
         const iconForButtonDel = document.createElement("i")
         iconForButtonDel.setAttribute("data-lucide", "Trash 2")
@@ -72,7 +72,6 @@ export function createTask (task){
             const text = "Видалити задачу?"
             showConfirm(text, action)
             updateNumbers()
-
         
         })
         taskList.append(listCard)

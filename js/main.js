@@ -131,6 +131,7 @@ for(task of tasks){
         isSearchMode = false
         inputText.placeholder = "Додати задачу..." 
         buttonAdd.classList.remove("hidden")
+        searchNull.classList.add("hidden");
         searchButton.innerHTML = '<i data-lucide="search"></i>';
         lucide.createIcons();
         inputText.value = "";

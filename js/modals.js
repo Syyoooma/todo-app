@@ -3,7 +3,6 @@ import { editInput, editModalText, editModal, modalText, confirmModal,
  } from "./dom.js"
 import { setPendingAction } from "./states.js"
 
-
 export function showConfirm(text, action){
         modalText.textContent = text
         confirmModal.classList.remove("hidden")
@@ -21,6 +20,7 @@ export function showDuplicateModal(text){
         duplicateConfirmText.textContent = text
         modalDuplicate.classList.remove("hidden")
     }
+    
 export function showComplete (text, action){
         modalTextComplete.textContent = text
         ModalComplete.classList.remove("hidden")
