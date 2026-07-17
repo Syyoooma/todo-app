@@ -137,7 +137,7 @@ for(task of tasks){
         
         for (const task of tasks) {
             task.li.classList.remove("hidden");
-            searchNull.classList.add("hidden")
+            
         }
     }
    })

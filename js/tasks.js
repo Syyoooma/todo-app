@@ -92,18 +92,25 @@ export function unComplete (task, spanText, buttonDone) {
         task.done = false
     }
 
-export function searchTask (){
-    const searchText = inputText.value.trim().toLowerCase()
-            for (const task of tasks) {
-                if (task.text.toLowerCase().includes(searchText)) {
-                    task.li.classList.remove("hidden")
-                }else {
-                    task.li.classList.add("hidden");
-                    searchNull.classList.remove("hidden")
-                }
-                if(searchText === ""){
-                    searchNull.classList.add("hidden")
-                    
-                }
-            }
+export function searchTask() {
+    const searchText = inputText.value.trim().toLowerCase();
+
+    let found = false;
+
+    for (const task of tasks) {
+        if (task.text.toLowerCase().includes(searchText)) {
+            task.li.classList.remove("hidden");
+            found = true;
+        } else {
+            task.li.classList.add("hidden");
+        }
+    }
+
+    if (searchText === "") {
+        searchNull.classList.add("hidden");
+    } else if (found) {
+        searchNull.classList.add("hidden");
+    } else {
+        searchNull.classList.remove("hidden");
+    }
 }
