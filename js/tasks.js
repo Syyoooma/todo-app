@@ -34,7 +34,7 @@ export function hasDuplicate(text, task){
         const enterText = text.toLowerCase()
 
         for(let i = 0; i < tasks.length; i++){
-            if(tasks[i].text === task){
+            if(tasks[i] === task){
                 continue
             }
             const taskText = tasks[i].text.toLowerCase()
@@ -44,6 +44,7 @@ export function hasDuplicate(text, task){
                 inputText.value = ""
                 return true
             }
+            
         }
         return false
     }

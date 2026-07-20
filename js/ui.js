@@ -17,21 +17,28 @@ export function createTask (task){
         taskItem.prepend(number);
         const spanText = document.createElement("span")
         spanText.className = "taskText"
-        
+        const spanContainer = document.createElement("div");
+        spanContainer.className = "taskSpan";
         if(task.done === true){
             spanText.classList.add("done")
         }
 
         spanText.textContent = task.text
+        spanContainer.append(number, spanText)
         listCard.append(taskItem)
-        taskItem.append(spanText)
+        taskItem.append(spanContainer)
+
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.className = "taskButtons";
+
+        
         
         const buttonChange = document.createElement("button")
         const iconForButtonChange = document.createElement("i")
         iconForButtonChange.setAttribute("data-lucide","pencil")
         
         buttonChange.append(iconForButtonChange)
-        taskItem.append(buttonChange)
+        buttonsContainer.append(buttonChange)
         
         buttonChange.addEventListener("click", () => {
             const action = () => editTask(task, spanText)
@@ -45,7 +52,7 @@ export function createTask (task){
         iconForButtonDone.setAttribute("data-lucide", "Check")
         buttonDone.append(iconForButtonDone)
 
-        taskItem.append(buttonDone)
+        buttonsContainer.append(buttonDone)
         buttonDone.addEventListener("click", () => {
 
             let action;
@@ -65,7 +72,7 @@ export function createTask (task){
         const iconForButtonDel = document.createElement("i")
         iconForButtonDel.setAttribute("data-lucide", "Trash 2")
         deleteButton.append(iconForButtonDel)
-        taskItem.append(deleteButton)
+        buttonsContainer.append(deleteButton)
         deleteButton.addEventListener("click", () => {
             
             const action = () => deleteTask(task, listCard)
@@ -74,6 +81,9 @@ export function createTask (task){
             updateNumbers()
         
         })
+        
+
+        taskItem.append(buttonsContainer);
         taskList.append(listCard)
         lucide.createIcons();
     }

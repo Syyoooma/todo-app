@@ -5,9 +5,13 @@ body{
 }
 
 .taskText {
-    flex: 1;
     font-size: 30px;
     color:white;
+    flex: 1;
+    min-width: 0;
+
+    word-break: break-word;
+    overflow-wrap: anywhere;
 }
 .done {
     opacity:.6;
@@ -96,8 +100,8 @@ li:hover{
 button {
     border:1px solid #3c4048;
     background:#2b2d31;
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     font-size: 18px;
     margin-right: 10px;
     margin-left: 10px;
@@ -186,33 +190,45 @@ button:hover{
 }
 
 .DivLi {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    margin-top: 10px;
+    display:flex;
+    align-items:flex-start;
+    width:100%;
+
+    min-height:56px;
+    padding:12px;
+
     border:1px solid #3c4048;
     background:#2b2d31;
-    border-radius: 10px;
+    border-radius:10px;
+    gap:12px;
 
 }
+
+.taskButtons {
+    display:flex;
+    gap:10px;
+    flex-shrink:0;
+    align-self:flex-start;
+}
+
+.taskSpan{
+    display:flex;
+    flex:1;
+    gap:12px;
+    min-width:0;
+}
+
 svg.lucide.lucide-Trash {
     color: aliceblue;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+ 
 }
 svg.lucide.lucide-Check {
     color: #2ecc71;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 svg.lucide.lucide-pencil {
     color: rgb(233, 161, 66);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
 }
 .task-number{
     margin-left: 5px;
@@ -384,4 +400,23 @@ svg.lucide.lucide-pencil {
         transform:translateX(100px);
     }
 
+}
+
+.filterContainer{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#buttonAll{
+    margin: 0;
+}
+#buttonCompleted{
+    width: 85px;
+}
+
+#buttonActive{
+    width: 75px;
 }
